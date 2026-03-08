@@ -1,16 +1,38 @@
-// Compose page from plain-TS components
-import { createNavbar } from './components/Navbar.js';
-import { createHero } from './components/Hero.js';
-import { createAboutMe } from './components/AboutMe.js';
-import { createProjects } from './components/Projects.js';
-import { createFooter } from './components/Footer.js';
+import './style.css';
+import { createAboutMe } from './components/AboutMe';
+import { createFooter } from './components/Footer';
+import { createHero } from './components/Hero';
+import { createNavbarFromTemplate } from './components/Navbar';
 
-const app = document.getElementById('app') || document.body;
+const appRoot = document.getElementById('app') || document.body;
 
-app.appendChild(createNavbar());
-app.appendChild(createHero({ name: 'Jonathan Golimlim', role: 'Developer', profileSrc: 'resources/profile-icon.svg' }));
-app.appendChild(createAboutMe());
-app.appendChild(createProjects());
-app.appendChild(createFooter());
+const appTemplate = document.createElement('template');
+appTemplate.innerHTML = `
+	<div id="site" class="min-h-screen flex flex-col">
+		<header id="site-header"></header>
+		<main id="site-main" class="flex-1"></main>
+		<section id="site-about"></section>
+		<footer id="site-footer"></footer>
+	</div>
+`;
 
-console.log('Components mounted');
+export function createAppFromTemplate() {
+	const root = appTemplate.content.firstElementChild!.cloneNode(true) as HTMLElement;
+
+	const header = root.querySelector('#site-header') as HTMLElement;
+	const main = root.querySelector('#site-main') as HTMLElement;
+	const about = root.querySelector('#site-about') as HTMLElement;
+	const footer = root.querySelector('#site-footer') as HTMLElement;
+
+	header.appendChild(createNavbarFromTemplate());
+	main.appendChild(createHero({ name: 'Jonathan Golimlim', role: 'Fullstack Developer', profileSrc: '/profile-icon.svg' }));
+	about.appendChild(createAboutMe());
+	footer.appendChild(createFooter());
+
+	return root;
+}
+
+const app = createAppFromTemplate();
+appRoot.className = '';
+appRoot.appendChild(app);
+console.log('App mounted via template');

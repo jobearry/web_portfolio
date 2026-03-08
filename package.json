@@ -1,19 +1,19 @@
-{   
-  "name": "web_portfolio",
-  "version": "1.0.0",
+{
+  "name": "web-portfolio",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/styles.css --minify",
-    "watch:css": "npx @tailwindcss/cli -i ./src/input.css -o styles.css --watch",
-    "build:ts": "tsc -p tsconfig.json && npm run build:css"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
-
-  "dependencies": {
-    "@tailwindcss/cli": "^4.2.1",
-    "tailwindcss": "^4.2.1"
-  },
-
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "~5.9.3",
+    "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "tailwindcss": "^4.2.1"
   }
 }
