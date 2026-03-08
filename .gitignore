@@ -1,20 +1,2 @@
-# VS Code
-.vscode/
-
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Logs
-*.log
-
-# Others
-*.sqlite3
-*.db
-*.bak
-*.swp
-*.swo
-.idea/
-*.iml
-/node_modules
+/dist/
+/node_modules/

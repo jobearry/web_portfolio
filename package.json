@@ -1,0 +1,19 @@
+{   
+  "name": "web_portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/styles.css --minify",
+    "watch:css": "npx @tailwindcss/cli -i ./src/input.css -o styles.css --watch",
+    "build:ts": "tsc -p tsconfig.json && npm run build:css"
+  },
+
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.1",
+    "tailwindcss": "^4.2.1"
+  },
+
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
